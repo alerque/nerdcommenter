@@ -1,4 +1,6 @@
-**Fork notice:** With the upstream project sitting stale after nearly 8 months since the last activity, 71 outstanding pull requests, no comments from the original developer, and dozens of developers duplicating efforts while scratching their own itches, I've decided to step in and run a fork for a while. Hopefully the original developer will eventually consider picking this plugin up again or adding more maintainers so that the user base doesn't end up fragmented, but for now I would invite anyone interested in the latest updates to consider installing from and contributing pull requests to this fork.
+**Un-fork notice:** The upstream author has added me as a maintainer to the main repository, so I'll be working through the backlog there in the coming days. Please don't bother with this fork as it will be going away shortly! Now back to your regularly scheduled programming...
+
+~~**Fork notice:** With the upstream project sitting stale after nearly 8 months since the last activity, 71 outstanding pull requests, no comments from the original developer, and dozens of developers duplicating efforts while scratching their own itches, I've decided to step in and run a fork for a while. Hopefully the original developer will eventually consider picking this plugin up again or adding more maintainers so that the user base doesn't end up fragmented, but for now I would invite anyone interested in the latest updates to consider installing from and contributing pull requests to this fork.~~
 
 ----
 
