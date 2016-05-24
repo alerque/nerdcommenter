@@ -726,13 +726,13 @@ function s:CommentBlock(top, bottom, lSide, rSide, forceNested )
     endif
 endfunction
 
-" Function: s:CommentHorizontalRule(firstLine, lastLine) {{{2
+" Function: s:HRule(firstLine, lastLine) {{{2
 " This function creates a "horizontal rule" out of comment characters for each
 " line specified
 "
 " Args:
 "   -firstLine/lastLine: the top and bottom lines to comment
-function s:CommentHorizontalRule(firstLine, lastLine)
+function s:HRule(firstLine, lastLine)
 	let currentLine = a:firstLine
 	let lastLine = a:lastLine
 
@@ -1237,8 +1237,8 @@ function! NERDComment(mode, type) range
             normal! yy
         endif
         execute firstLine .','. lastLine .'call NERDComment("'. a:mode .'", "Comment")'
-	elseif a:type ==? 'CommentHorizontalRule'
-		call s:CommentHorizontalRule(firstLine, lastLine)
+	elseif a:type ==? 'HRule'
+		call s:HRule(firstLine, lastLine)
     endif
 
     call s:RecoverStateAfterLineComment(state)
@@ -2946,7 +2946,7 @@ call s:CreateMaps('nx', 'Uncomment',  'Uncomment', 'cu')
 call s:CreateMaps('n',  'AltDelims',  'Switch Delimiters', 'ca')
 call s:CreateMaps('i',  'Insert',     'Insert Comment Here', '')
 call s:CreateMaps('',   ':',          '-Sep3-', '')
-call s:CreateMaps('nx', 'CommentHorizontalRule',    'Make a horizontal rule of comment chars', 'c_')
+call s:CreateMaps('nx', 'HRule',      'Make a horizontal rule of comment chars', 'c_')
 call s:CreateMaps('',   ':help NERDCommenterContents<CR>', 'Help', '')
 
 inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i', "insert")<CR>

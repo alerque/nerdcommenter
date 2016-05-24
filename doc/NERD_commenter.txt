@@ -28,7 +28,7 @@ CONTENTS                                               *NERDCommenterContents*
             3.2.11 Use alternate delims map...|NERDComAltDelim|
             3.2.12 Comment aligned maps.......|NERDComAlignedComment|
             3.2.13 Uncomment line map.........|NERDComUncommentLine|
-            3.2.14 Comment horiz. line........|NERDComCommentHorizontalRule|
+            3.2.14 Comment horizontal line....|NERDComHRule|
         3.4 Sexy Comments.....................|NERDComSexyComments|
         3.5 The NERDComment function..........|NERDComNERDComment|
     4.Options.................................|NERDComOptions|
@@ -359,10 +359,10 @@ Related  options:
 |'NERDRemoveAltComs'|
 |'NERDRemoveExtraSpaces'|
 ------------------------------------------------------------------------------
-3.2.14 Make horiz. line of comments              *NERDComCommentHorizontalRule*
+3.2.14 Make horizontal line of comments                *NERDComHRule*
 
 Default mappings: [count]|<Leader>|c_
-Mapped to: <plug>NERDCommenterCommentHorizontalRule
+Mapped to: <plug>NERDCommenterHRule
 Applicable modes: normal visual-line.
 
 Will create a line or horizontal rule out of comment characters. The width of
