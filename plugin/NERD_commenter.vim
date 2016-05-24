@@ -1584,15 +1584,13 @@ function s:UncommentLineNormal(line)
     "if there are place-holders on the line then we check to see if they are
     "the outermost delimiters on the line. If so then we replace them with
     "real delimiters
-    if indxLeftPlace != -1
+    if indxLeftPlace != -1 || indxRightPlace != -1
         if (indxLeftPlace < indxLeft || indxLeft==-1) && (indxLeftPlace < indxLeftAlt || indxLeftAlt==-1)
             let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, line)
         endif
-    elseif indxRightPlace != -1
         if (indxRightPlace < indxLeft || indxLeft==-1) && (indxLeftPlace < indxLeftAlt || indxLeftAlt==-1)
             let line = s:ReplaceDelims(g:NERDLPlace, g:NERDRPlace, left, right, line)
         endif
-
     endif
 
     let line = s:ConvertLeadingWhiteSpace(line)
@@ -2189,6 +2187,21 @@ function s:IsCommented(left, right, line)
     return 0
 endfunction
 
+" Function: s:HasDelimiters(left, right, line) {{{2
+"This function is used to determine whether the given line has any delimiters
+"that might need replacing with placeholders to avoid nesting issues
+"
+" Args:
+"   -line: the line that to check if commented
+"   -left/right: the left and right delimiters to check for
+function s:HasDelimiters(left, right, line)
+    "if the line isn't commented return true
+    if s:FindDelimiterIndex(a:left, a:line) != -1 || (s:FindDelimiterIndex(a:right, a:line) != -1 || !s:Multipart())
+        return 1
+    endif
+    return 0
+endfunction
+
 " Function: s:IsCommentedFromStartOfLine(left, line) {{{2
 "This function is used to determine whether the given line is commented with
 "the given delimiters at the start of the line i.e the left delimiter is the
@@ -2743,19 +2756,19 @@ endfunction
 function s:SwapOuterMultiPartDelimsForPlaceHolders(line)
     " find out if the line is commented using normal delimiters and/or
     " alternate ones
-    let isCommented = s:IsCommented(s:Left(), s:Right(), a:line)
-    let isCommentedAlt = s:IsCommented(s:Left({'alt': 1}), s:Right({'alt': 1}), a:line)
+    let hasDelimiters = s:HasDelimiters(s:Left(), s:Right(), a:line)
+    let hasDelimitersAlt = s:HasDelimiters(s:Left({'alt': 1}), s:Right({'alt': 1}), a:line)
 
     let line2 = a:line
 
     "if the line is commented and there is a right delimiter, replace
     "the delimiters with place-holders
-    if isCommented && s:Multipart()
+    if hasDelimiters && s:Multipart()
         let line2 = s:ReplaceDelims(s:Left(), s:Right(), g:NERDLPlace, g:NERDRPlace, a:line)
 
     "similarly if the line is commented with the alternative
     "delimiters
-    elseif isCommentedAlt && s:AltMultipart()
+    elseif hasDelimitersAlt && s:AltMultipart()
         let line2 = s:ReplaceDelims(s:Left({'alt': 1}), s:Right({'alt': 1}), g:NERDLPlace, g:NERDRPlace, a:line)
     endif
 
